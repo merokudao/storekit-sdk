@@ -53,5 +53,5 @@ export interface DappDeveloper {
      * @type {string}
      * @memberof DappDeveloper
      */
-    githubId?: string;
+    githubID: string;
 }
