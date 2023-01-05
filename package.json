@@ -1,0 +1,30 @@
+{
+  "name": "@merokudao/storekit-sdk",
+  "version": "0.0.3",
+  "description": "SDK for MerokudAO StoreKit",
+  "author": "MerokuDAO",
+  "keywords": [
+    "meroku",
+    "merokudao",
+    "dapp-store",
+    "storekit",
+    ""
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  \
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --outDir dist/",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.11.5",
+    "typescript": "^3.6.4"
+  }
+}
