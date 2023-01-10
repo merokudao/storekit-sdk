@@ -18,7 +18,11 @@ or
 
 import {
   DAppRegistryApi,
-  StoreRegistryApi
+  Dapp,
+  DappAvailableOnPlatformEnum,
+  StoreRegistryApi,
+  DappCategoryEnum,
+  DappWithDevCreds
 } from '@merokudao/storekit-sdk';
 
 const baseURL = process.env.STOREKIT_API_URL as string | 'https://api-a.meroku.store';
@@ -49,8 +53,8 @@ const dev: DappDeveloper = {
   privacyPolicyUrl: 'https://www.example.com/privacy',
   support: {
     url: 'https://www.example.com/support'
-  }
-  githubId: 'github-id-of-dev'
+  },
+  githubID: 'github-id-of-dev'
 };
 
 const dApp: Dapp = {
@@ -63,7 +67,7 @@ const dApp: Dapp = {
   language: 'en',
   version: '0.0.1',
   isListed: true,
-  listDate: (new Date()).toString(),
+  listDate: (new Date()).toISOString(),
   availableOnPlatform: DappAvailableOnPlatformEnum.Web,
   developer: dev,
   tags: ['nft-maker', 'polygon'],
