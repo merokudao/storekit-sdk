@@ -33,6 +33,12 @@ export interface Dapp {
      */
     description: string;
     /**
+     * The URL of the dApp from where the webview will be loaded.
+     * @type {string}
+     * @memberof Dapp
+     */
+    appUrl?: string;
+    /**
      * 
      * @type {DappImages}
      * @memberof Dapp
