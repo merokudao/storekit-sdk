@@ -41,6 +41,8 @@ const userPermissionsApi = new UserPermissionsApi(
 ```typescript
 
 const installURL = await userPermissionsApi.appInstallUrlGet();
+
+// installURL -> { "url": "https://github.com/apps/app-name/installations/new" }
 ```
 
 **Check if the user has installed app**
@@ -49,7 +51,9 @@ const installURL = await userPermissionsApi.appInstallUrlGet();
 const githubID = "get-this-from-logged-in-user";
 const installed = await userPermissionsApi.appGhIDInstalledGet(githubID);
 
-if (installed) {
+// installed -> { "isInstalled": true }
+
+if (installed.isInstalled) {
   // all good
 } else {
   redirect_to(installURL)
