@@ -14,6 +14,50 @@ or
 
 # Usage
 
+## Check Permissions
+
+You should check if the user has installed github app or not.
+
+**Initialize**
+
+```typescript
+import { UserPermissionsApi } from '@merokudao/storekit-sdk';
+
+const baseURL = process.env.STOREKIT_API_URL as string | 'https://api-a.meroku.store';
+
+// Configure the API and instantiate
+const userPermissionsApi = new UserPermissionsApi(
+  {
+    basePath: baseURL
+  },
+  undefined,
+  undefined
+);
+
+```
+
+**Get the app install URL**
+
+```typescript
+
+const installURL = await userPermissionsApi.appInstallUrlGet();
+```
+
+**Check if the user has installed app**
+
+```typescript
+const githubID = "get-this-from-logged-in-user";
+const installed = await userPermissionsApi.appGhIDInstalledGet(githubID);
+
+if (installed) {
+  // all good
+} else {
+  redirect_to(installURL)
+}
+```
+
+## Registry Use
+
 ```typescript
 
 import {
@@ -109,47 +153,3 @@ reqBodyDel: DappIdWithDevCreds = {
 const prURL = await dAppRegistryAPI.deleteDApp(reqBodyDel)
 
 ```
-
-This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
-
-Environment
-* Node.js
-* Webpack
-* Browserify
-
-Language level
-* ES5 - you must have a Promises/A+ library installed
-* ES6
-
-Module system
-* CommonJS
-* ES6 module system
-
-It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
-
-### Building
-
-To build and compile the typescript sources to javascript use:
-```
-npm install
-npm run build
-```
-
-### Publishing
-
-First build the package then run ```npm publish```
-
-### Consuming
-
-navigate to the folder of your consuming project and run one of the following commands.
-
-_published:_
-
-```
-npm install @ --save
-```
-
-_unPublished (not recommended):_
-
-```
-npm install PATH_TO_GENERATED_PACKAGE --save
