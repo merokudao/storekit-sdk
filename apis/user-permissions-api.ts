@@ -16,21 +16,28 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { Dapp } from '../models';
+import { InlineResponse200 } from '../models';
+import { InlineResponse2001 } from '../models';
 /**
- * StoreRegistryApi - axios parameter creator
+ * UserPermissionsApi - axios parameter creator
  * @export
  */
-export const StoreRegistryApiAxiosParamCreator = function (configuration?: Configuration) {
+export const UserPermissionsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * For finding featured dApps
-         * @summary Featured dApps
+         * Checks if the Github App is installed for this user or not
+         * @summary GH App Installed?
+         * @param {string} ghID Github Username of the user whose permissions have to check
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFeaturedDApps: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/store/featured`;
+        appGhIDInstalledGet: async (ghID: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'ghID' is not null or undefined
+            if (ghID === null || ghID === undefined) {
+                throw new RequiredError('ghID','Required parameter ghID was null or undefined when calling appGhIDInstalledGet.');
+            }
+            const localVarPath = `/app/{ghID}/installed`
+                .replace(`{${"ghID"}}`, encodeURIComponent(String(ghID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -58,13 +65,13 @@ export const StoreRegistryApiAxiosParamCreator = function (configuration?: Confi
             };
         },
         /**
-         * Returns the store title
-         * @summary Registry title
+         * Get the URL where Github app can be installed
+         * @summary Github App Install Location
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getStoreTitle: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/store/title/`;
+        appInstallUrlGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/app/installUrl`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -95,32 +102,33 @@ export const StoreRegistryApiAxiosParamCreator = function (configuration?: Confi
 };
 
 /**
- * StoreRegistryApi - functional programming interface
+ * UserPermissionsApi - functional programming interface
  * @export
  */
-export const StoreRegistryApiFp = function(configuration?: Configuration) {
+export const UserPermissionsApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * For finding featured dApps
-         * @summary Featured dApps
+         * Checks if the Github App is installed for this user or not
+         * @summary GH App Installed?
+         * @param {string} ghID Github Username of the user whose permissions have to check
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFeaturedDApps(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Dapp>>>> {
-            const localVarAxiosArgs = await StoreRegistryApiAxiosParamCreator(configuration).getFeaturedDApps(options);
+        async appGhIDInstalledGet(ghID: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<InlineResponse200>>> {
+            const localVarAxiosArgs = await UserPermissionsApiAxiosParamCreator(configuration).appGhIDInstalledGet(ghID, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Returns the store title
-         * @summary Registry title
+         * Get the URL where Github app can be installed
+         * @summary Github App Install Location
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getStoreTitle(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
-            const localVarAxiosArgs = await StoreRegistryApiAxiosParamCreator(configuration).getStoreTitle(options);
+        async appInstallUrlGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<InlineResponse2001>>> {
+            const localVarAxiosArgs = await UserPermissionsApiAxiosParamCreator(configuration).appInstallUrlGet(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -130,57 +138,59 @@ export const StoreRegistryApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * StoreRegistryApi - factory interface
+ * UserPermissionsApi - factory interface
  * @export
  */
-export const StoreRegistryApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const UserPermissionsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
-         * For finding featured dApps
-         * @summary Featured dApps
+         * Checks if the Github App is installed for this user or not
+         * @summary GH App Installed?
+         * @param {string} ghID Github Username of the user whose permissions have to check
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFeaturedDApps(options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Dapp>>> {
-            return StoreRegistryApiFp(configuration).getFeaturedDApps(options).then((request) => request(axios, basePath));
+        async appGhIDInstalledGet(ghID: string, options?: AxiosRequestConfig): Promise<AxiosResponse<InlineResponse200>> {
+            return UserPermissionsApiFp(configuration).appGhIDInstalledGet(ghID, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns the store title
-         * @summary Registry title
+         * Get the URL where Github app can be installed
+         * @summary Github App Install Location
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getStoreTitle(options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
-            return StoreRegistryApiFp(configuration).getStoreTitle(options).then((request) => request(axios, basePath));
+        async appInstallUrlGet(options?: AxiosRequestConfig): Promise<AxiosResponse<InlineResponse2001>> {
+            return UserPermissionsApiFp(configuration).appInstallUrlGet(options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * StoreRegistryApi - object-oriented interface
+ * UserPermissionsApi - object-oriented interface
  * @export
- * @class StoreRegistryApi
+ * @class UserPermissionsApi
  * @extends {BaseAPI}
  */
-export class StoreRegistryApi extends BaseAPI {
+export class UserPermissionsApi extends BaseAPI {
     /**
-     * For finding featured dApps
-     * @summary Featured dApps
+     * Checks if the Github App is installed for this user or not
+     * @summary GH App Installed?
+     * @param {string} ghID Github Username of the user whose permissions have to check
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof StoreRegistryApi
+     * @memberof UserPermissionsApi
      */
-    public async getFeaturedDApps(options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<Dapp>>> {
-        return StoreRegistryApiFp(this.configuration).getFeaturedDApps(options).then((request) => request(this.axios, this.basePath));
+    public async appGhIDInstalledGet(ghID: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<InlineResponse200>> {
+        return UserPermissionsApiFp(this.configuration).appGhIDInstalledGet(ghID, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Returns the store title
-     * @summary Registry title
+     * Get the URL where Github app can be installed
+     * @summary Github App Install Location
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof StoreRegistryApi
+     * @memberof UserPermissionsApi
      */
-    public async getStoreTitle(options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
-        return StoreRegistryApiFp(this.configuration).getStoreTitle(options).then((request) => request(this.axios, this.basePath));
+    public async appInstallUrlGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<InlineResponse2001>> {
+        return UserPermissionsApiFp(this.configuration).appInstallUrlGet(options).then((request) => request(this.axios, this.basePath));
     }
 }

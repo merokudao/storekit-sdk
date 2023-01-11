@@ -14,19 +14,13 @@
 /**
  * 
  * @export
- * @interface DappDeveloperSupport
+ * @interface InlineResponse200
  */
-export interface DappDeveloperSupport {
+export interface InlineResponse200 {
     /**
      * 
-     * @type {string}
-     * @memberof DappDeveloperSupport
+     * @type {boolean}
+     * @memberof InlineResponse200
      */
-    url?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DappDeveloperSupport
-     */
-    email?: string;
+    isInstalled?: boolean;
 }
