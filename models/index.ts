@@ -9,4 +9,5 @@ export * from './featured-section';
 export * from './inline-response200';
 export * from './inline-response2001';
 export * from './pre-signed-url-response';
+export * from './pre-signed-urls-response';
 export * from './registry';

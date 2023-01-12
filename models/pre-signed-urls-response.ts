@@ -14,31 +14,19 @@
 /**
  * 
  * @export
- * @interface FeaturedSection
+ * @interface PreSignedUrlsResponse
  */
-export interface FeaturedSection {
+export interface PreSignedUrlsResponse {
     /**
-     * Title of the Featured Section. This will be displayed on the dApp Store. It should be simple and clear.
-     * @type {string}
-     * @memberof FeaturedSection
+     * 
+     * @type {boolean}
+     * @memberof PreSignedUrlsResponse
      */
-    title: string;
+    success?: boolean;
     /**
-     * Description of the Featured Section. This will be displayed on the dApp Store. It should be simple and clear.
-     * @type {string}
-     * @memberof FeaturedSection
-     */
-    description: string;
-    /**
-     * Key of the Featured Section. This will be used to identify the Featured Section. It should be simple and clear
-     * @type {string}
-     * @memberof FeaturedSection
-     */
-    key: string;
-    /**
-     * List of dApp IDs that are part of this featured section. The dApp IDs should be the same as the ones in the dApp Store's dApps list.
+     * 
      * @type {Array<string>}
-     * @memberof FeaturedSection
+     * @memberof PreSignedUrlsResponse
      */
-    dappIds: Array<string>;
+    urls?: Array<string>;
 }
