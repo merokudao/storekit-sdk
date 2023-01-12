@@ -11,36 +11,22 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Dapp } from './dapp';
-import { FeaturedSection } from './featured-section';
 /**
  * 
  * @export
- * @interface Registry
+ * @interface PreSignedUrlResponse
  */
-export interface Registry {
+export interface PreSignedUrlResponse {
     /**
-     * Title of the dApp Store
-     * @type {string}
-     * @memberof Registry
+     * 
+     * @type {boolean}
+     * @memberof PreSignedUrlResponse
      */
-    title: string;
+    success?: boolean;
     /**
-     * List of chains supported by the dApp. This should be chainID of an EVM powered network. Ref https://chainlist.org/
-     * @type {Array<number>}
-     * @memberof Registry
+     * 
+     * @type {Blob}
+     * @memberof PreSignedUrlResponse
      */
-    chains: Array<number>;
-    /**
-     * List of dApps
-     * @type {Array<Dapp>}
-     * @memberof Registry
-     */
-    dapps: Array<Dapp>;
-    /**
-     * List of featured sections
-     * @type {Array<FeaturedSection>}
-     * @memberof Registry
-     */
-    featuredSections?: Array<FeaturedSection>;
+    url?: Blob;
 }
