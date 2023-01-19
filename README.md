@@ -165,6 +165,8 @@ build for an app. These methods should be used instead of raw linking,
 because these store details about visits, downloads, installs and uninstalls.
 These metrics are used to prepare trending dapps.
 
+Getting a dapp will always send it's global metrics.
+
 
 ## Visit a dApp's Home Page
 
@@ -202,6 +204,8 @@ const getViewURL = (base_path: string,
 
 ```typescript
 
+AnalyticsApi.new()
+
 const getDownloadURL = (base_path: string,
   dappId: string,
   userId: string | undefined,
@@ -223,3 +227,34 @@ const getDownloadURL = (base_path: string,
 In the UI the return value of `getDownloadURL` should be shown. When user
 clicks on it, they will be redirected to the download URL and the file will
 be automatically downloaded.
+
+
+## Post a rating for dapp by user
+
+
+```typescript
+
+const analyticsApi = new AnalyticsApi({
+    basePath: baseURL
+});
+
+const body: DappRating = {
+  dappId: 'test.example.dapp',
+  rating: 4,
+  comment: 'comment from user',
+  userId: 12
+};
+const response: DappRating = await analyticsApi.dappRatePost(body)
+
+```
+
+## Get a rating for dapp by user
+
+```typescript
+
+const dappId = 'test.example.dapp';
+const userId = 2;
+const userAddress = undefined;
+const response: DappRating = await analyticsApi.dappRateGet(dappId, userId, userAddress);
+
+```

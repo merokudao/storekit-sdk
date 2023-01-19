@@ -11,36 +11,52 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Dapp } from './dapp';
-import { FeaturedSection } from './featured-section';
 /**
  * 
  * @export
- * @interface Registry
+ * @interface DappMetrics
  */
-export interface Registry {
+export interface DappMetrics {
     /**
-     * Title of the dApp Store
+     * 
      * @type {string}
-     * @memberof Registry
+     * @memberof DappMetrics
      */
-    title: string;
+    dappId?: string;
     /**
-     * List of chains supported by the dApp. This should be chainID of an EVM powered network. Ref https://chainlist.org/
-     * @type {Array<number>}
-     * @memberof Registry
+     * 
+     * @type {number}
+     * @memberof DappMetrics
      */
-    chains: Array<number>;
+    downloads?: number;
     /**
-     * List of dApps
-     * @type {Array<Dapp>}
-     * @memberof Registry
+     * 
+     * @type {number}
+     * @memberof DappMetrics
      */
-    dapps: Array<Dapp>;
+    installs?: number;
     /**
-     * List of featured sections
-     * @type {Array<FeaturedSection>}
-     * @memberof Registry
+     * 
+     * @type {number}
+     * @memberof DappMetrics
      */
-    featuredSections?: Array<FeaturedSection>;
+    uninstalls?: number;
+    /**
+     * Count of unique ratings received by this dapp.
+     * @type {number}
+     * @memberof DappMetrics
+     */
+    ratingsCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DappMetrics
+     */
+    visits?: number;
+    /**
+     * Average rating of the dapp
+     * @type {number}
+     * @memberof DappMetrics
+     */
+    rating?: number;
 }

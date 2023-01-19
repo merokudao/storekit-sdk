@@ -11,36 +11,40 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Dapp } from './dapp';
-import { FeaturedSection } from './featured-section';
 /**
  * 
  * @export
- * @interface Registry
+ * @interface DappRating
  */
-export interface Registry {
+export interface DappRating {
     /**
-     * Title of the dApp Store
+     * 
      * @type {string}
-     * @memberof Registry
+     * @memberof DappRating
      */
-    title: string;
+    dappId: string;
     /**
-     * List of chains supported by the dApp. This should be chainID of an EVM powered network. Ref https://chainlist.org/
-     * @type {Array<number>}
-     * @memberof Registry
+     * 
+     * @type {number}
+     * @memberof DappRating
      */
-    chains: Array<number>;
+    rating: number;
     /**
-     * List of dApps
-     * @type {Array<Dapp>}
-     * @memberof Registry
+     * 
+     * @type {string}
+     * @memberof DappRating
      */
-    dapps: Array<Dapp>;
+    comment?: string;
     /**
-     * List of featured sections
-     * @type {Array<FeaturedSection>}
-     * @memberof Registry
+     * 
+     * @type {string}
+     * @memberof DappRating
      */
-    featuredSections?: Array<FeaturedSection>;
+    userId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DappRating
+     */
+    userAddress?: string;
 }
