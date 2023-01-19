@@ -157,3 +157,69 @@ reqBodyDel: DappIdWithDevCreds = {
 const prURL = await dAppRegistryAPI.deleteDApp(reqBodyDel)
 
 ```
+
+# Analytics
+
+There are URLs that support visit to an app's webapp or download the
+build for an app. These methods should be used instead of raw linking,
+because these store details about visits, downloads, installs and uninstalls.
+These metrics are used to prepare trending dapps.
+
+
+## Visit a dApp's Home Page
+
+
+The URL to visit a dapp's home page should be constructed as below. The return
+value of `getViewURL` should be shown on the UI. When user clicks on it,
+they will be redirected to the dapp home page.
+
+```typescript
+
+
+const basePath = process.env.STOREKIT_API_URL as string | 'https://api-a.meroku.store';
+
+const dappId = "dapp.example.dapp";
+
+const getViewURL = (base_path: string,
+  dappId: string,
+  userId: string | undefined,
+  userAddress: string | undefined) => {
+    if (!userId && !userAddress) {
+      throw Error("One of userId or userAddress must be defined");
+    }
+
+    if (userId) {
+      return `${base_path}/o/view/${dappId}?userId=${userId}`;
+    } else if (userAddress) {
+      return `${base_path}/o/view/${dappId}?userAddress=${userAddress}`;
+    }
+}
+
+```
+
+
+## Download a dApp's Build
+
+```typescript
+
+const getDownloadURL = (base_path: string,
+  dappId: string,
+  userId: string | undefined,
+  userAddress: string | undefined) => {
+    if (!userId && !userAddress) {
+      throw Error("One of userId or userAddress must be defined");
+    }
+
+    if (userId) {
+      return `${base_path}/o/download/${dappId}?userId=${userId}`;
+    } else if (userAddress) {
+      return `${base_path}/o/download/${dappId}?userAddress=${userAddress}`;
+    }
+}
+
+```
+
+
+In the UI the return value of `getDownloadURL` should be shown. When user
+clicks on it, they will be redirected to the download URL and the file will
+be automatically downloaded.

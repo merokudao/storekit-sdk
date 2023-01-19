@@ -16,28 +16,28 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { InlineResponse200 } from '../models';
-import { InlineResponse2001 } from '../models';
 /**
- * UserPermissionsApi - axios parameter creator
+ * AnalyticsApi - axios parameter creator
  * @export
  */
-export const UserPermissionsApiAxiosParamCreator = function (configuration?: Configuration) {
+export const AnalyticsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Checks if the Github App is installed for this user or not
-         * @summary GH App Installed?
-         * @param {string} ghID Github Username of the user whose permissions have to check
+         * 
+         * @summary Download dapp Build
+         * @param {string} dappId The dappId of dapp where to visit.
+         * @param {string} [userId] 
+         * @param {string} [userAddress] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appGhIDInstalledGet: async (ghID: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'ghID' is not null or undefined
-            if (ghID === null || ghID === undefined) {
-                throw new RequiredError('ghID','Required parameter ghID was null or undefined when calling appGhIDInstalledGet.');
+        downloadDapp: async (dappId: string, userId?: string, userAddress?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'dappId' is not null or undefined
+            if (dappId === null || dappId === undefined) {
+                throw new RequiredError('dappId','Required parameter dappId was null or undefined when calling downloadDapp.');
             }
-            const localVarPath = `/app/{ghID}/installed`
-                .replace(`{${"ghID"}}`, encodeURIComponent(String(ghID)));
+            const localVarPath = `/o/download/{dappId}`
+                .replace(`{${"dappId"}}`, encodeURIComponent(String(dappId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -47,6 +47,14 @@ export const UserPermissionsApiAxiosParamCreator = function (configuration?: Con
             const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (userId !== undefined) {
+                localVarQueryParameter['userId'] = userId;
+            }
+
+            if (userAddress !== undefined) {
+                localVarQueryParameter['userAddress'] = userAddress;
+            }
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -65,13 +73,21 @@ export const UserPermissionsApiAxiosParamCreator = function (configuration?: Con
             };
         },
         /**
-         * Get the URL where Github app can be installed
-         * @summary Github App Install Location
+         * 
+         * @summary Visit dapp's homepage
+         * @param {string} dappId The dappId of dapp where to visit.
+         * @param {string} [userId] 
+         * @param {string} [userAddress] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appInstallUrlGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/app/installUrl`;
+        visitDapp: async (dappId: string, userId?: string, userAddress?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'dappId' is not null or undefined
+            if (dappId === null || dappId === undefined) {
+                throw new RequiredError('dappId','Required parameter dappId was null or undefined when calling visitDapp.');
+            }
+            const localVarPath = `/o/view/{dappId}`
+                .replace(`{${"dappId"}}`, encodeURIComponent(String(dappId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -81,6 +97,14 @@ export const UserPermissionsApiAxiosParamCreator = function (configuration?: Con
             const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (userId !== undefined) {
+                localVarQueryParameter['userId'] = userId;
+            }
+
+            if (userAddress !== undefined) {
+                localVarQueryParameter['userAddress'] = userAddress;
+            }
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -102,33 +126,38 @@ export const UserPermissionsApiAxiosParamCreator = function (configuration?: Con
 };
 
 /**
- * UserPermissionsApi - functional programming interface
+ * AnalyticsApi - functional programming interface
  * @export
  */
-export const UserPermissionsApiFp = function(configuration?: Configuration) {
+export const AnalyticsApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * Checks if the Github App is installed for this user or not
-         * @summary GH App Installed?
-         * @param {string} ghID Github Username of the user whose permissions have to check
+         * 
+         * @summary Download dapp Build
+         * @param {string} dappId The dappId of dapp where to visit.
+         * @param {string} [userId] 
+         * @param {string} [userAddress] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async appGhIDInstalledGet(ghID: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<InlineResponse200>>> {
-            const localVarAxiosArgs = await UserPermissionsApiAxiosParamCreator(configuration).appGhIDInstalledGet(ghID, options);
+        async downloadDapp(dappId: string, userId?: string, userAddress?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await AnalyticsApiAxiosParamCreator(configuration).downloadDapp(dappId, userId, userAddress, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Get the URL where Github app can be installed
-         * @summary Github App Install Location
+         * 
+         * @summary Visit dapp's homepage
+         * @param {string} dappId The dappId of dapp where to visit.
+         * @param {string} [userId] 
+         * @param {string} [userAddress] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async appInstallUrlGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<InlineResponse2001>>> {
-            const localVarAxiosArgs = await UserPermissionsApiAxiosParamCreator(configuration).appInstallUrlGet(options);
+        async visitDapp(dappId: string, userId?: string, userAddress?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await AnalyticsApiAxiosParamCreator(configuration).visitDapp(dappId, userId, userAddress, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -138,59 +167,69 @@ export const UserPermissionsApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * UserPermissionsApi - factory interface
+ * AnalyticsApi - factory interface
  * @export
  */
-export const UserPermissionsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const AnalyticsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
-         * Checks if the Github App is installed for this user or not
-         * @summary GH App Installed?
-         * @param {string} ghID Github Username of the user whose permissions have to check
+         * 
+         * @summary Download dapp Build
+         * @param {string} dappId The dappId of dapp where to visit.
+         * @param {string} [userId] 
+         * @param {string} [userAddress] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async appGhIDInstalledGet(ghID: string, options?: AxiosRequestConfig): Promise<AxiosResponse<InlineResponse200>> {
-            return UserPermissionsApiFp(configuration).appGhIDInstalledGet(ghID, options).then((request) => request(axios, basePath));
+        async downloadDapp(dappId: string, userId?: string, userAddress?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return AnalyticsApiFp(configuration).downloadDapp(dappId, userId, userAddress, options).then((request) => request(axios, basePath));
         },
         /**
-         * Get the URL where Github app can be installed
-         * @summary Github App Install Location
+         * 
+         * @summary Visit dapp's homepage
+         * @param {string} dappId The dappId of dapp where to visit.
+         * @param {string} [userId] 
+         * @param {string} [userAddress] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async appInstallUrlGet(options?: AxiosRequestConfig): Promise<AxiosResponse<InlineResponse2001>> {
-            return UserPermissionsApiFp(configuration).appInstallUrlGet(options).then((request) => request(axios, basePath));
+        async visitDapp(dappId: string, userId?: string, userAddress?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return AnalyticsApiFp(configuration).visitDapp(dappId, userId, userAddress, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * UserPermissionsApi - object-oriented interface
+ * AnalyticsApi - object-oriented interface
  * @export
- * @class UserPermissionsApi
+ * @class AnalyticsApi
  * @extends {BaseAPI}
  */
-export class UserPermissionsApi extends BaseAPI {
+export class AnalyticsApi extends BaseAPI {
     /**
-     * Checks if the Github App is installed for this user or not
-     * @summary GH App Installed?
-     * @param {string} ghID Github Username of the user whose permissions have to check
+     * 
+     * @summary Download dapp Build
+     * @param {string} dappId The dappId of dapp where to visit.
+     * @param {string} [userId] 
+     * @param {string} [userAddress] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof UserPermissionsApi
+     * @memberof AnalyticsApi
      */
-    public async appGhIDInstalledGet(ghID: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<InlineResponse200>> {
-        return UserPermissionsApiFp(this.configuration).appGhIDInstalledGet(ghID, options).then((request) => request(this.axios, this.basePath));
+    public async downloadDapp(dappId: string, userId?: string, userAddress?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return AnalyticsApiFp(this.configuration).downloadDapp(dappId, userId, userAddress, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Get the URL where Github app can be installed
-     * @summary Github App Install Location
+     * 
+     * @summary Visit dapp's homepage
+     * @param {string} dappId The dappId of dapp where to visit.
+     * @param {string} [userId] 
+     * @param {string} [userAddress] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof UserPermissionsApi
+     * @memberof AnalyticsApi
      */
-    public async appInstallUrlGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<InlineResponse2001>> {
-        return UserPermissionsApiFp(this.configuration).appInstallUrlGet(options).then((request) => request(this.axios, this.basePath));
+    public async visitDapp(dappId: string, userId?: string, userAddress?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return AnalyticsApiFp(this.configuration).visitDapp(dappId, userId, userAddress, options).then((request) => request(this.axios, this.basePath));
     }
 }
