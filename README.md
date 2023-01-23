@@ -7,9 +7,11 @@ This package is generated using Swagger CodeGen. More details on that follows th
 **T O C**
 
 - [Install](#install)
-- [Usage](#usage)
-  * [Check Permissions](#check-permissions)
-  * [Registry Use](#registry-use)
+- [Check Permissions](#check-permissions)
+  * [Initialize](#initialize)
+  * [Get the app install URL](#get-the-app-install-url)
+  * [Check if the user has installed app](#check-if-the-user-has-installed-app)
+- [Registry Use](#registry-use)
 - [Analytics](#analytics)
   * [Visit a dApp's Home Page](#visit-a-dapp-s-home-page)
   * [Download a dApp's Build](#download-a-dapp-s-build)
@@ -30,13 +32,12 @@ or
 
 `yarn add @merokudao/storekit-sdk`
 
-# Usage
 
-## Check Permissions
+# Check Permissions
 
 You should check if the user has installed github app or not.
 
-**Initialize**
+## Initialize
 
 ```typescript
 import { UserPermissionsApi } from '@merokudao/storekit-sdk';
@@ -54,7 +55,7 @@ const userPermissionsApi = new UserPermissionsApi(
 
 ```
 
-**Get the app install URL**
+## Get the app install URL
 
 ```typescript
 
@@ -63,7 +64,7 @@ const installURL = await userPermissionsApi.appInstallUrlGet();
 // installURL -> { "url": "https://github.com/apps/app-name/installations/new" }
 ```
 
-**Check if the user has installed app**
+## Check if the user has installed app
 
 ```typescript
 const githubID = "get-this-from-logged-in-user";
@@ -78,7 +79,7 @@ if (installed.isInstalled) {
 }
 ```
 
-## Registry Use
+# Registry Use
 
 ```typescript
 
