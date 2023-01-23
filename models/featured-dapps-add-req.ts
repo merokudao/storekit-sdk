@@ -14,43 +14,43 @@
 /**
  * 
  * @export
- * @interface DappIdWithDevCreds
+ * @interface FeaturedDAppsAddReq
  */
-export interface DappIdWithDevCreds {
+export interface FeaturedDAppsAddReq {
     /**
      * The name of the developer (from GitHub)
      * @type {string}
-     * @memberof DappIdWithDevCreds
+     * @memberof FeaturedDAppsAddReq
      */
-    name: string;
+    name?: string;
     /**
      * The email of the developer (from Github)
      * @type {string}
-     * @memberof DappIdWithDevCreds
+     * @memberof FeaturedDAppsAddReq
      */
-    email: string;
+    email?: string;
     /**
      * The JWT access token of the developer (from Github) for user to server API Calls
      * @type {string}
-     * @memberof DappIdWithDevCreds
+     * @memberof FeaturedDAppsAddReq
      */
-    accessToken: string;
+    accessToken?: string;
     /**
      * The GitHub ID of the developer
      * @type {string}
-     * @memberof DappIdWithDevCreds
+     * @memberof FeaturedDAppsAddReq
      */
-    githubID: string;
+    githubID?: string;
     /**
-     * The ID of the dApp
-     * @type {number}
-     * @memberof DappIdWithDevCreds
-     */
-    dappId: number;
-    /**
-     * The GitHub organization to fork the repo to.
+     * Key of the featured section where the dapp will be added.
      * @type {string}
-     * @memberof DappIdWithDevCreds
+     * @memberof FeaturedDAppsAddReq
      */
-    org?: string;
+    sectionKey?: string;
+    /**
+     * List of dApp IDs that are part of this featured section. The dApp IDs should be the same as the ones in the dApp Store's dApps list. All the dApps in this list should be published.
+     * @type {Array<string>}
+     * @memberof FeaturedDAppsAddReq
+     */
+    dappIds?: Array<string>;
 }

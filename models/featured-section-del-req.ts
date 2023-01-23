@@ -14,43 +14,37 @@
 /**
  * 
  * @export
- * @interface DappIdWithDevCreds
+ * @interface FeaturedSectionDelReq
  */
-export interface DappIdWithDevCreds {
+export interface FeaturedSectionDelReq {
     /**
      * The name of the developer (from GitHub)
      * @type {string}
-     * @memberof DappIdWithDevCreds
+     * @memberof FeaturedSectionDelReq
      */
-    name: string;
+    name?: string;
     /**
      * The email of the developer (from Github)
      * @type {string}
-     * @memberof DappIdWithDevCreds
+     * @memberof FeaturedSectionDelReq
      */
-    email: string;
+    email?: string;
     /**
      * The JWT access token of the developer (from Github) for user to server API Calls
      * @type {string}
-     * @memberof DappIdWithDevCreds
+     * @memberof FeaturedSectionDelReq
      */
-    accessToken: string;
+    accessToken?: string;
     /**
      * The GitHub ID of the developer
      * @type {string}
-     * @memberof DappIdWithDevCreds
+     * @memberof FeaturedSectionDelReq
      */
-    githubID: string;
+    githubID?: string;
     /**
-     * The ID of the dApp
-     * @type {number}
-     * @memberof DappIdWithDevCreds
-     */
-    dappId: number;
-    /**
-     * The GitHub organization to fork the repo to.
+     * Key of the featured section which will be deleted.
      * @type {string}
-     * @memberof DappIdWithDevCreds
+     * @memberof FeaturedSectionDelReq
      */
-    org?: string;
+    sectionKey?: string;
 }

@@ -14,43 +14,49 @@
 /**
  * 
  * @export
- * @interface DappIdWithDevCreds
+ * @interface FeaturedSectionAddReq
  */
-export interface DappIdWithDevCreds {
+export interface FeaturedSectionAddReq {
     /**
      * The name of the developer (from GitHub)
      * @type {string}
-     * @memberof DappIdWithDevCreds
+     * @memberof FeaturedSectionAddReq
      */
-    name: string;
+    name?: string;
     /**
      * The email of the developer (from Github)
      * @type {string}
-     * @memberof DappIdWithDevCreds
+     * @memberof FeaturedSectionAddReq
      */
-    email: string;
+    email?: string;
     /**
      * The JWT access token of the developer (from Github) for user to server API Calls
      * @type {string}
-     * @memberof DappIdWithDevCreds
+     * @memberof FeaturedSectionAddReq
      */
-    accessToken: string;
+    accessToken?: string;
     /**
      * The GitHub ID of the developer
      * @type {string}
-     * @memberof DappIdWithDevCreds
+     * @memberof FeaturedSectionAddReq
      */
-    githubID: string;
+    githubID?: string;
     /**
-     * The ID of the dApp
-     * @type {number}
-     * @memberof DappIdWithDevCreds
-     */
-    dappId: number;
-    /**
-     * The GitHub organization to fork the repo to.
+     * Title of the Featured Section. This will be displayed on the dApp Store. It should be simple and clear.
      * @type {string}
-     * @memberof DappIdWithDevCreds
+     * @memberof FeaturedSectionAddReq
      */
-    org?: string;
+    sectionTitle?: string;
+    /**
+     * Description of the Featured Section. This will be displayed on the dApp Store. It should be simple and clear.
+     * @type {string}
+     * @memberof FeaturedSectionAddReq
+     */
+    description: string;
+    /**
+     * List of dApp IDs that are part of this featured section. The dApp IDs should be the same as the ones in the dApp Store's dApps list. All the dApps in this list should be published.
+     * @type {Array<string>}
+     * @memberof FeaturedSectionAddReq
+     */
+    dappIds: Array<string>;
 }

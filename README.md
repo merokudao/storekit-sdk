@@ -4,6 +4,24 @@ This is the NodeJS Typescript SDK for API described at [https://github.com/merok
 
 This package is generated using Swagger CodeGen. More details on that follows the usage section.
 
+**T O C**
+
+- [Install](#install)
+- [Usage](#usage)
+  * [Check Permissions](#check-permissions)
+  * [Registry Use](#registry-use)
+- [Analytics](#analytics)
+  * [Visit a dApp's Home Page](#visit-a-dapp-s-home-page)
+  * [Download a dApp's Build](#download-a-dapp-s-build)
+  * [Post a rating for dapp by user](#post-a-rating-for-dapp-by-user)
+  * [Get a rating for dapp by user](#get-a-rating-for-dapp-by-user)
+- [Featured Section](#featured-section)
+  * [Add a featured section](#add-a-featured-section)
+  * [Delete a featured section](#delete-a-featured-section)
+  * [Get Featured Sections and the dapps in them.](#get-featured-sections-and-the-dapps-in-them)
+  * [Get Store Title](#get-store-title)
+  * [Toggle dapps in a featured section.](#toggle-dapps-in-a-featured-section)
+
 # Install
 
 `npm install @merokudao/storekit-sdk`
@@ -257,4 +275,87 @@ const userId = 2;
 const userAddress = undefined;
 const response: DappRating = await analyticsApi.dappRateGet(dappId, userId, userAddress);
 
+```
+
+# Featured Section
+
+Initialise the API as below.
+
+```typescript
+const featuredApi = new FeaturedSectionApi({
+	    basePath: baseURL
+	});
+
+```
+
+## Add a featured section
+
+```typescript
+const body: FeaturedSectionAddReq = {
+	name: '',
+	email: '',
+	accessToken: '',
+	githubID: '',
+	sectionTitle: '' // title of the section to be added,
+	description: '',
+	dappIds: [
+		''
+	]
+}
+const prURL = await featuredApi.putFeaturedSection(body);
+```
+
+Once the PR is merged, a "key" of the section will be generated. This is
+essentially `slugify(sectionTitle)`. In any call to update / delete the
+featured section, key must be provided.	
+
+## Delete a featured section
+
+```typescript
+const body: FeaturedSectionDelReq = {
+	name: '',
+	email: '',
+	accessToken: '',
+	githubID: '',
+	sectionKey: '' // key of the section to be deleted
+};
+await featuredApi.deleteFeaturedSection(body);
+```
+
+## Get Featured Sections and the dapps in them.
+
+```typescript
+const featuredSections: Array<FeaturedSection> = await featuredApi.getFeaturedDApps()
+```
+
+This should be iterated and shown on ui.
+
+## Get Store Title
+
+Gets the title of the registry
+
+```typescript
+const title: string = await featuredApi.getStoreTitle()
+```
+
+## Toggle dapps in a featured section.
+
+Note that this is a toggle function. If the dapps provided
+by field `dappIds` does not exist in this section, they will be added.
+If they exist, they will be removed.
+
+```typescript
+
+const body: FeaturedDAppsAddReq = {
+	name: '',
+	email: '',
+	accessToken: '',
+	githubID: '',
+	sectionKey: '',
+	dappIds: [
+		''
+	]
+	
+};
+const prURL = await featuredApi.putFeaturedDApps(body);
 ```
