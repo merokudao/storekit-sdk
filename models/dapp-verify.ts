@@ -14,19 +14,25 @@
 /**
  * 
  * @export
- * @interface PreSignedUrlsResponse
+ * @interface DappVerify
  */
-export interface PreSignedUrlsResponse {
+export interface DappVerify {
+    /**
+     * 
+     * @type {string}
+     * @memberof DappVerify
+     */
+    verificationCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DappVerify
+     */
+    domain?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof PreSignedUrlsResponse
+     * @memberof DappVerify
      */
-    success?: boolean;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof PreSignedUrlsResponse
-     */
-    urls?: Array<string>;
+    isVerified?: boolean;
 }

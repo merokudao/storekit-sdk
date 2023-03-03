@@ -16,37 +16,36 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { InlineResponse2001 } from '../models';
-import { InlineResponse2002 } from '../models';
+import { DappGetVerificationId } from '../models';
+import { DappVerify } from '../models';
+import { DomainverificationGetVerificationIdBody } from '../models';
+import { DomainverificationVerifyBody } from '../models';
 /**
- * UserPermissionsApi - axios parameter creator
+ * DomainVerificationApi - axios parameter creator
  * @export
  */
-export const UserPermissionsApiAxiosParamCreator = function (configuration?: Configuration) {
+export const DomainVerificationApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Checks if the Github App is installed for this user or not
-         * @summary GH App Installed?
-         * @param {string} ghID Github Username of the user whose permissions have to check
+         * Use this to get a domain verification to code to verify domain ownership.
+         * @summary Get a domain verification code
+         * @param {DomainverificationGetVerificationIdBody} [body] Send the request with githubId and domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appGhIDInstalledGet: async (ghID: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'ghID' is not null or undefined
-            if (ghID === null || ghID === undefined) {
-                throw new RequiredError('ghID','Required parameter ghID was null or undefined when calling appGhIDInstalledGet.');
-            }
-            const localVarPath = `/app/{ghID}/installed`
-                .replace(`{${"ghID"}}`, encodeURIComponent(String(ghID)));
+        domainverificationGetVerificationIdPost: async (body?: DomainverificationGetVerificationIdBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/domainverification/getVerificationId`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -58,6 +57,8 @@ export const UserPermissionsApiAxiosParamCreator = function (configuration?: Con
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -65,22 +66,25 @@ export const UserPermissionsApiAxiosParamCreator = function (configuration?: Con
             };
         },
         /**
-         * Get the URL where Github app can be installed
-         * @summary Github App Install Location
+         * Use this to verify your domain ownership.
+         * @summary Verify domain txt records.
+         * @param {DomainverificationVerifyBody} [body] Send the request with githubId and domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appInstallUrlGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/app/installUrl`;
+        domainverificationVerifyPost: async (body?: DomainverificationVerifyBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/domainverification/verify`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -92,6 +96,8 @@ export const UserPermissionsApiAxiosParamCreator = function (configuration?: Con
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -102,33 +108,34 @@ export const UserPermissionsApiAxiosParamCreator = function (configuration?: Con
 };
 
 /**
- * UserPermissionsApi - functional programming interface
+ * DomainVerificationApi - functional programming interface
  * @export
  */
-export const UserPermissionsApiFp = function(configuration?: Configuration) {
+export const DomainVerificationApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * Checks if the Github App is installed for this user or not
-         * @summary GH App Installed?
-         * @param {string} ghID Github Username of the user whose permissions have to check
+         * Use this to get a domain verification to code to verify domain ownership.
+         * @summary Get a domain verification code
+         * @param {DomainverificationGetVerificationIdBody} [body] Send the request with githubId and domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async appGhIDInstalledGet(ghID: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<InlineResponse2001>>> {
-            const localVarAxiosArgs = await UserPermissionsApiAxiosParamCreator(configuration).appGhIDInstalledGet(ghID, options);
+        async domainverificationGetVerificationIdPost(body?: DomainverificationGetVerificationIdBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<DappGetVerificationId>>> {
+            const localVarAxiosArgs = await DomainVerificationApiAxiosParamCreator(configuration).domainverificationGetVerificationIdPost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Get the URL where Github app can be installed
-         * @summary Github App Install Location
+         * Use this to verify your domain ownership.
+         * @summary Verify domain txt records.
+         * @param {DomainverificationVerifyBody} [body] Send the request with githubId and domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async appInstallUrlGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<InlineResponse2002>>> {
-            const localVarAxiosArgs = await UserPermissionsApiAxiosParamCreator(configuration).appInstallUrlGet(options);
+        async domainverificationVerifyPost(body?: DomainverificationVerifyBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<DappVerify>>> {
+            const localVarAxiosArgs = await DomainVerificationApiAxiosParamCreator(configuration).domainverificationVerifyPost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -138,59 +145,61 @@ export const UserPermissionsApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * UserPermissionsApi - factory interface
+ * DomainVerificationApi - factory interface
  * @export
  */
-export const UserPermissionsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const DomainVerificationApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
-         * Checks if the Github App is installed for this user or not
-         * @summary GH App Installed?
-         * @param {string} ghID Github Username of the user whose permissions have to check
+         * Use this to get a domain verification to code to verify domain ownership.
+         * @summary Get a domain verification code
+         * @param {DomainverificationGetVerificationIdBody} [body] Send the request with githubId and domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async appGhIDInstalledGet(ghID: string, options?: AxiosRequestConfig): Promise<AxiosResponse<InlineResponse2001>> {
-            return UserPermissionsApiFp(configuration).appGhIDInstalledGet(ghID, options).then((request) => request(axios, basePath));
+        async domainverificationGetVerificationIdPost(body?: DomainverificationGetVerificationIdBody, options?: AxiosRequestConfig): Promise<AxiosResponse<DappGetVerificationId>> {
+            return DomainVerificationApiFp(configuration).domainverificationGetVerificationIdPost(body, options).then((request) => request(axios, basePath));
         },
         /**
-         * Get the URL where Github app can be installed
-         * @summary Github App Install Location
+         * Use this to verify your domain ownership.
+         * @summary Verify domain txt records.
+         * @param {DomainverificationVerifyBody} [body] Send the request with githubId and domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async appInstallUrlGet(options?: AxiosRequestConfig): Promise<AxiosResponse<InlineResponse2002>> {
-            return UserPermissionsApiFp(configuration).appInstallUrlGet(options).then((request) => request(axios, basePath));
+        async domainverificationVerifyPost(body?: DomainverificationVerifyBody, options?: AxiosRequestConfig): Promise<AxiosResponse<DappVerify>> {
+            return DomainVerificationApiFp(configuration).domainverificationVerifyPost(body, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * UserPermissionsApi - object-oriented interface
+ * DomainVerificationApi - object-oriented interface
  * @export
- * @class UserPermissionsApi
+ * @class DomainVerificationApi
  * @extends {BaseAPI}
  */
-export class UserPermissionsApi extends BaseAPI {
+export class DomainVerificationApi extends BaseAPI {
     /**
-     * Checks if the Github App is installed for this user or not
-     * @summary GH App Installed?
-     * @param {string} ghID Github Username of the user whose permissions have to check
+     * Use this to get a domain verification to code to verify domain ownership.
+     * @summary Get a domain verification code
+     * @param {DomainverificationGetVerificationIdBody} [body] Send the request with githubId and domain.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof UserPermissionsApi
+     * @memberof DomainVerificationApi
      */
-    public async appGhIDInstalledGet(ghID: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<InlineResponse2001>> {
-        return UserPermissionsApiFp(this.configuration).appGhIDInstalledGet(ghID, options).then((request) => request(this.axios, this.basePath));
+    public async domainverificationGetVerificationIdPost(body?: DomainverificationGetVerificationIdBody, options?: AxiosRequestConfig) : Promise<AxiosResponse<DappGetVerificationId>> {
+        return DomainVerificationApiFp(this.configuration).domainverificationGetVerificationIdPost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Get the URL where Github app can be installed
-     * @summary Github App Install Location
+     * Use this to verify your domain ownership.
+     * @summary Verify domain txt records.
+     * @param {DomainverificationVerifyBody} [body] Send the request with githubId and domain.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof UserPermissionsApi
+     * @memberof DomainVerificationApi
      */
-    public async appInstallUrlGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<InlineResponse2002>> {
-        return UserPermissionsApiFp(this.configuration).appInstallUrlGet(options).then((request) => request(this.axios, this.basePath));
+    public async domainverificationVerifyPost(body?: DomainverificationVerifyBody, options?: AxiosRequestConfig) : Promise<AxiosResponse<DappVerify>> {
+        return DomainVerificationApiFp(this.configuration).domainverificationVerifyPost(body, options).then((request) => request(this.axios, this.basePath));
     }
 }

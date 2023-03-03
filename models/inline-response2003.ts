@@ -14,19 +14,19 @@
 /**
  * 
  * @export
- * @interface PreSignedUrlsResponse
+ * @interface InlineResponse2003
  */
-export interface PreSignedUrlsResponse {
+export interface InlineResponse2003 {
     /**
      * 
      * @type {boolean}
-     * @memberof PreSignedUrlsResponse
+     * @memberof InlineResponse2003
      */
     success?: boolean;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof PreSignedUrlsResponse
+     * @type {string}
+     * @memberof InlineResponse2003
      */
-    urls?: Array<string>;
+    url?: string;
 }

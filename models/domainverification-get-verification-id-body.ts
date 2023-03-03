@@ -14,19 +14,19 @@
 /**
  * 
  * @export
- * @interface PreSignedUrlsResponse
+ * @interface DomainverificationGetVerificationIdBody
  */
-export interface PreSignedUrlsResponse {
+export interface DomainverificationGetVerificationIdBody {
     /**
      * 
-     * @type {boolean}
-     * @memberof PreSignedUrlsResponse
+     * @type {string}
+     * @memberof DomainverificationGetVerificationIdBody
      */
-    success?: boolean;
+    githubId: string;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof PreSignedUrlsResponse
+     * @type {string}
+     * @memberof DomainverificationGetVerificationIdBody
      */
-    urls?: Array<string>;
+    domain: string;
 }

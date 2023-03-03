@@ -14,19 +14,37 @@
 /**
  * 
  * @export
- * @interface PreSignedUrlsResponse
+ * @interface DappUploadBody
  */
-export interface PreSignedUrlsResponse {
+export interface DappUploadBody {
     /**
-     * 
-     * @type {boolean}
-     * @memberof PreSignedUrlsResponse
+     * DApp Id is Key value of file in servers
+     * @type {string}
+     * @memberof DappUploadBody
      */
-    success?: boolean;
+    dappId?: string;
     /**
-     * 
-     * @type {Array<string>}
-     * @memberof PreSignedUrlsResponse
+     * It tells about the dAppFiles content
+     * @type {string}
+     * @memberof DappUploadBody
      */
-    urls?: Array<string>;
+    field?: DappUploadBodyFieldEnum;
+    /**
+     * Add files to upload
+     * @type {Array<Blob>}
+     * @memberof DappUploadBody
+     */
+    dAppFiles?: Array<Blob>;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum DappUploadBodyFieldEnum {
+    Build = 'build',
+    Screenshots = 'screenshots',
+    Logo = 'logo',
+    Banner = 'banner'
+}
+
