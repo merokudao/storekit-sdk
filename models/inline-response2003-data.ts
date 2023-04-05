@@ -12,21 +12,21 @@
  * Do not edit the class manually.
  */
 /**
- * A list of countries where the dApp is available or unavailable. If this is not present, the dApp is available everywhere. If this is present, then one of either allowedCountries or blockedCountries should be present. If both are present, then the dApp is available in allowedCountries and unavailable in blockedCountries. The name of countries should be in ISO-3661-1 Alpha-2 Code.
+ * 
  * @export
- * @interface DappGeoRestrictions
+ * @interface InlineResponse2003Data
  */
-export interface DappGeoRestrictions {
+export interface InlineResponse2003Data {
     /**
-     * A list of countries where the dApp is available
-     * @type {Array<string>}
-     * @memberof DappGeoRestrictions
+     * 
+     * @type {string}
+     * @memberof InlineResponse2003Data
      */
-    allowedCountries?: Array<string>;
+    fileName?: string;
     /**
-     * A list of countries where the dApp is unavailable
-     * @type {Array<string>}
-     * @memberof DappGeoRestrictions
+     * 
+     * @type {string}
+     * @memberof InlineResponse2003Data
      */
-    blockedCountries?: Array<string>;
+    url?: string;
 }
