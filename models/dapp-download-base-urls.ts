@@ -12,21 +12,95 @@
  * Do not edit the class manually.
  */
 /**
- * A list of countries where the dApp is available or unavailable. If this is not present, the dApp is available everywhere. If this is present, then one of either allowedCountries or blockedCountries should be present. If both are present, then the dApp is available in allowedCountries and unavailable in blockedCountries. The name of countries should be in ISO-3661-1 Alpha-2 Code.
+ * 
  * @export
- * @interface DappGeoRestrictions
+ * @interface DappDownloadBaseUrls
  */
-export interface DappGeoRestrictions {
+export interface DappDownloadBaseUrls {
     /**
-     * A list of countries where the dApp is available
-     * @type {Array<string>}
-     * @memberof DappGeoRestrictions
+     * The url to download the dapp.
+     * @type {Blob}
+     * @memberof DappDownloadBaseUrls
      */
-    allowedCountries?: Array<string>;
+    url: Blob;
     /**
-     * A list of countries where the dApp is unavailable
-     * @type {Array<string>}
-     * @memberof DappGeoRestrictions
+     * The device/platform in which dapp could be intalled.
+     * @type {string}
+     * @memberof DappDownloadBaseUrls
      */
-    blockedCountries?: Array<string>;
+    platform?: DappDownloadBaseUrlsPlatformEnum;
+    /**
+     * The dapp is supported on which architecture of the platform.
+     * @type {string}
+     * @memberof DappDownloadBaseUrls
+     */
+    architecture?: DappDownloadBaseUrlsArchitectureEnum;
+    /**
+     * The minimum version of platform where this dapp could be functional.
+     * @type {string}
+     * @memberof DappDownloadBaseUrls
+     */
+    minVersion: DappDownloadBaseUrlsMinVersionEnum;
+    /**
+     * The maximum version of platform where this dapp could be functional.
+     * @type {string}
+     * @memberof DappDownloadBaseUrls
+     */
+    maxVersion?: DappDownloadBaseUrlsMaxVersionEnum;
+    /**
+     * The screen DPI for which the dApp is optimised. If it is not specified, it's assumed to be optimised for all resolutions.
+     * @type {string}
+     * @memberof DappDownloadBaseUrls
+     */
+    screenDPI?: string;
+    /**
+     * Unique id for dapp regading platform.
+     * @type {string}
+     * @memberof DappDownloadBaseUrls
+     */
+    packageId: string;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum DappDownloadBaseUrlsPlatformEnum {
+    Android = 'android',
+    Ios = 'ios',
+    Web = 'web'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum DappDownloadBaseUrlsArchitectureEnum {
+    ARMv7A = 'ARMv7-A',
+    ARM64V8a = 'ARM64-v8a',
+    X86 = 'x86',
+    X8664 = 'x86_64',
+    MIPS = 'MIPS',
+    MIPS64 = 'MIPS64',
+    ARMv8A = 'ARMv8-A',
+    ARMv7s = 'ARMv7s',
+    ARM64 = 'ARM64'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum DappDownloadBaseUrlsMinVersionEnum {
+    _1100 = 'android(11.0.0)',
+    _1200 = 'android(12.0.0)',
+    _1400 = 'android(14.0.0)'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum DappDownloadBaseUrlsMaxVersionEnum {
+    _1100 = 'android(11.0.0)',
+    _1200 = 'android(12.0.0)',
+    _1400 = 'android(14.0.0)'
+}
+

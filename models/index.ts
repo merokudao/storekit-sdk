@@ -1,6 +1,8 @@
 export * from './dapp';
+export * from './dapp-contracts';
 export * from './dapp-developer';
 export * from './dapp-developer-support';
+export * from './dapp-download-base-urls';
 export * from './dapp-geo-restrictions';
 export * from './dapp-get-verification-id';
 export * from './dapp-id-with-dev-creds';
@@ -21,6 +23,7 @@ export * from './inline-response200';
 export * from './inline-response2001';
 export * from './inline-response2002';
 export * from './inline-response2003';
+export * from './inline-response2003-data';
 export * from './pre-signed-url-response';
 export * from './pre-signed-urls-response';
 export * from './registry';

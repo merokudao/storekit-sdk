@@ -12,21 +12,32 @@
  * Do not edit the class manually.
  */
 /**
- * A list of countries where the dApp is available or unavailable. If this is not present, the dApp is available everywhere. If this is present, then one of either allowedCountries or blockedCountries should be present. If both are present, then the dApp is available in allowedCountries and unavailable in blockedCountries. The name of countries should be in ISO-3661-1 Alpha-2 Code.
+ * 
  * @export
- * @interface DappGeoRestrictions
+ * @interface DappContracts
  */
-export interface DappGeoRestrictions {
+export interface DappContracts {
     /**
-     * A list of countries where the dApp is available
-     * @type {Array<string>}
-     * @memberof DappGeoRestrictions
+     * The chainId of the contract.
+     * @type {string}
+     * @memberof DappContracts
      */
-    allowedCountries?: Array<string>;
+    chainId: DappContractsChainIdEnum;
     /**
-     * A list of countries where the dApp is unavailable
-     * @type {Array<string>}
-     * @memberof DappGeoRestrictions
+     * The address of the contract.
+     * @type {string}
+     * @memberof DappContracts
      */
-    blockedCountries?: Array<string>;
+    address: string;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum DappContractsChainIdEnum {
+    _1 = '1',
+    _56 = '56',
+    _137 = '137'
+}
+
