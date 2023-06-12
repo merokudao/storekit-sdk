@@ -14,61 +14,19 @@
 /**
  * 
  * @export
- * @interface DappRatingRes
+ * @interface InlineResponse2001Data
  */
-export interface DappRatingRes {
+export interface InlineResponse2001Data {
     /**
      * 
      * @type {string}
-     * @memberof DappRatingRes
+     * @memberof InlineResponse2001Data
      */
-    status?: string;
+    fileName?: string;
     /**
      * 
      * @type {string}
-     * @memberof DappRatingRes
+     * @memberof InlineResponse2001Data
      */
-    id?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DappRatingRes
-     */
-    dappId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof DappRatingRes
-     */
-    rating?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof DappRatingRes
-     */
-    comment?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DappRatingRes
-     */
-    userId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DappRatingRes
-     */
-    userAddress?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DappRatingRes
-     */
-    version?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DappRatingRes
-     */
-    updatedAt?: string;
+    url?: string;
 }

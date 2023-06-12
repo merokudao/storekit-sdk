@@ -14,61 +14,55 @@
 /**
  * 
  * @export
- * @interface DappRatingRes
+ * @interface DappRatingResponseData
  */
-export interface DappRatingRes {
+export interface DappRatingResponseData {
     /**
      * 
      * @type {string}
-     * @memberof DappRatingRes
-     */
-    status?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DappRatingRes
+     * @memberof DappRatingResponseData
      */
     id?: string;
     /**
      * 
      * @type {string}
-     * @memberof DappRatingRes
+     * @memberof DappRatingResponseData
      */
     dappId?: string;
     /**
      * 
      * @type {number}
-     * @memberof DappRatingRes
+     * @memberof DappRatingResponseData
      */
     rating?: number;
     /**
      * 
      * @type {string}
-     * @memberof DappRatingRes
+     * @memberof DappRatingResponseData
      */
     comment?: string;
     /**
      * 
      * @type {string}
-     * @memberof DappRatingRes
+     * @memberof DappRatingResponseData
      */
     userId?: string;
     /**
      * 
      * @type {string}
-     * @memberof DappRatingRes
+     * @memberof DappRatingResponseData
      */
     userAddress?: string;
     /**
      * 
      * @type {string}
-     * @memberof DappRatingRes
+     * @memberof DappRatingResponseData
      */
     version?: string;
     /**
      * 
      * @type {string}
-     * @memberof DappRatingRes
+     * @memberof DappRatingResponseData
      */
     updatedAt?: string;
 }

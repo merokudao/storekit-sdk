@@ -4,6 +4,9 @@ This is the NodeJS Typescript SDK for API described at [https://github.com/merok
 
 This package is generated using Swagger CodeGen. More details on that follows the usage section.
 
+The versioning of this package is consistent with the API spec version. So if you are using OpenAPI Spec
+v 1.20, then the package should be `1.20`.
+
 **T O C**
 
 - [Install](#install)
@@ -308,7 +311,7 @@ const prURL = await featuredApi.putFeaturedSection(body);
 
 Once the PR is merged, a "key" of the section will be generated. This is
 essentially `slugify(sectionTitle)`. In any call to update / delete the
-featured section, key must be provided.	
+featured section, key must be provided.
 
 ## Delete a featured section
 
@@ -356,7 +359,7 @@ const body: FeaturedDAppsAddReq = {
 	dappIds: [
 		''
 	]
-	
+
 };
 const prURL = await featuredApi.putFeaturedDApps(body);
 ```

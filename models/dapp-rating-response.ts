@@ -11,64 +11,41 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { DappRatingResponseData } from './dapp-rating-response-data';
 /**
  * 
  * @export
- * @interface DappRatingRes
+ * @interface DappRatingResponse
  */
-export interface DappRatingRes {
+export interface DappRatingResponse {
     /**
      * 
      * @type {string}
-     * @memberof DappRatingRes
+     * @memberof DappRatingResponse
      */
     status?: string;
     /**
      * 
-     * @type {string}
-     * @memberof DappRatingRes
+     * @type {number}
+     * @memberof DappRatingResponse
      */
-    id?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DappRatingRes
-     */
-    dappId?: string;
+    page?: number;
     /**
      * 
      * @type {number}
-     * @memberof DappRatingRes
+     * @memberof DappRatingResponse
      */
-    rating?: number;
+    limit?: number;
     /**
      * 
-     * @type {string}
-     * @memberof DappRatingRes
+     * @type {number}
+     * @memberof DappRatingResponse
      */
-    comment?: string;
+    pageCount?: number;
     /**
      * 
-     * @type {string}
-     * @memberof DappRatingRes
+     * @type {Array<DappRatingResponseData>}
+     * @memberof DappRatingResponse
      */
-    userId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DappRatingRes
-     */
-    userAddress?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DappRatingRes
-     */
-    version?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DappRatingRes
-     */
-    updatedAt?: string;
+    data?: Array<DappRatingResponseData>;
 }
