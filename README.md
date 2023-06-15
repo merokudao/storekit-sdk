@@ -56,13 +56,13 @@ const dAppRegistryAPI = new DAppRegistryApi(
 );
 
 // Get the dApps list
-const dApps: Dapp[] = await dAppRegistryAPI.getDApp();
+const dApps: Dapp[] = await dAppRegistryAPI.getDAppV1();
 
 // Search for dApps using a search string
-const dApps: Dapp[] = await dAppRegistryAPI.getDApp("nft marketplace");
+const dApps: Dapp[] = await dAppRegistryAPI.getDAppV1("nft marketplace");
 
 // Optionally provide filters for search
-const dApps: Dapp[] = await dAppRegistryAPI.getDApp("nft marketplace", chainId: 137);
+const dApps: Dapp[] = await dAppRegistryAPI.getDAppV1("nft marketplace", chainId: 137);
 ```
 
 
@@ -99,9 +99,9 @@ const getViewURL = (base_path: string,
     }
 
     if (userId) {
-      return `${base_path}/o/view/${dappId}?userId=${userId}`;
+      return `${base_path}/api/v1/o/view/${dappId}?userId=${userId}`;
     } else if (userAddress) {
-      return `${base_path}/o/view/${dappId}?userAddress=${userAddress}`;
+      return `${base_path}/api/v1/o/view/${dappId}?userAddress=${userAddress}`;
     }
 }
 
@@ -123,9 +123,9 @@ const getDownloadURL = (base_path: string,
     }
 
     if (userId) {
-      return `${base_path}/o/download/${dappId}?userId=${userId}`;
+      return `${base_path}/api/v1/o/download/${dappId}?userId=${userId}`;
     } else if (userAddress) {
-      return `${base_path}/o/download/${dappId}?userAddress=${userAddress}`;
+      return `${base_path}/api/v1/o/download/${dappId}?userAddress=${userAddress}`;
     }
 }
 
@@ -152,7 +152,7 @@ const body: DappRating = {
   comment: 'comment from user',
   userId: 12
 };
-const response: DappRating = await analyticsApi.dappRatePost(body)
+const response: DappRating = await analyticsApi.apiV1DappRatePost(body)
 
 ```
 
@@ -163,7 +163,7 @@ const response: DappRating = await analyticsApi.dappRatePost(body)
 const dappId = 'test_example.dapp';
 const userId = 2;
 const userAddress = undefined;
-const response: DappRating = await analyticsApi.dappRateGet(dappId, userId, userAddress);
+const response: DappRating = await analyticsApi.apiV1DappRateGet(dappId, userId, userAddress);
 
 ```
 
@@ -181,7 +181,7 @@ const featuredApi = new FeaturedSectionApi({
 ## Get Featured Sections and the dapps in them.
 
 ```typescript
-const featuredSections: Array<FeaturedSection> = await featuredApi.getFeaturedDApps()
+const featuredSections: Array<FeaturedSection> = await featuredApi.getFeaturedDAppsV1()
 ```
 
 This should be iterated and shown on ui.
@@ -191,5 +191,5 @@ This should be iterated and shown on ui.
 Gets the title of the registry
 
 ```typescript
-const title: string = await featuredApi.getStoreTitle()
+const title: string = await featuredApi.getStoreTitleV1()
 ```
