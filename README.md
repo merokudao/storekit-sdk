@@ -41,7 +41,8 @@ import {
   DappAvailableOnPlatformEnum,
   StoreRegistryApi,
   DappCategoryEnum,
-  DappWithDevCreds
+  DappWithDevCreds,
+  DeveloperProfilesApi,
 } from '@merokudao/storekit-sdk';
 
 const baseURL = process.env.STOREKIT_API_URL as string | 'https://api.meroku.store';
@@ -56,13 +57,7 @@ const dAppRegistryAPI = new DAppRegistryApi(
 );
 
 // Get the dApps list
-const dApps: Dapp[] = await dAppRegistryAPI.getDAppV1();
-
-// Search for dApps using a search string
-const dApps: Dapp[] = await dAppRegistryAPI.getDAppV1("nft marketplace");
-
-// Optionally provide filters for search
-const dApps: Dapp[] = await dAppRegistryAPI.getDAppV1("nft marketplace", chainId: 137);
+const dApps: Dapp[] = await dAppRegistryAPI.searchDapps();
 ```
 
 
@@ -192,4 +187,67 @@ Gets the title of the registry
 
 ```typescript
 const title: string = await featuredApi.getStoreTitleV1()
+```
+
+# AppStores
+
+```typescript
+  const storeApi = new StoreRegistryApi()
+```
+
+APis to interact with appStore's
+
+## Get/Search appStore's
+
+```typescript
+const stores = await storeApi.searchStores()
+```
+
+## Search store by storeId/key
+
+```typescript
+const stores = await storeApi.searchStoresByStoreId('kailash')
+```
+## Get appStore's by owner address
+
+```typescript
+const stores = await storeApi.searchStoresByOwnerAddress('0xA0B867319e3fBb15181D118097b1069C6380222E')
+```
+
+## Search for Autocomplete appStore's search
+
+```typescript
+const stores = await storeApi.autocompleteStores('unstoppable')
+```
+
+
+# Developers
+
+```typescript
+  const developerApi = new DeveloperProfilesApi()
+```
+
+APis to interact with developer's
+
+## Get/Search developer's
+
+```typescript
+const developers = await developerApi.searchDeveloperProfile()
+```
+
+## Search store by storeId/key
+
+```typescript
+const developers = await developerApi.searchDeveloperByDevId('kai.dev')
+```
+## Get developer's by owner address
+
+```typescript
+const developers = await developerApi.searchDeveloperByOwnerAddress('0xA0B867319e3fBb15181D118097b1069C6380222E')
+```
+
+## Search for Autocomplete developer's search
+
+```typescript
+const developers = await developerApi.autocompleteDeveloper('kai')
 ```
